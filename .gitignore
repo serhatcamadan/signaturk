@@ -59,6 +59,13 @@ Thumbs.db
 .ipynb_checkpoints/
 *.ipynb
 
+# === ANİMASYONLAR (yalnızca örnek dosyalar repoda kalır) ===
+animations/harfler/*.mp4
+animations/kelimeler/*.mp4
+animations/refference.mp4
+!animations/harfler/A.mp4
+!animations/kelimeler/selam.mp4
+
 # === GEÇİCİ DOSYALAR ===
 *.tmp
 *.bak
