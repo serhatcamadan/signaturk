@@ -1,0 +1,64 @@
+# === VERİ SETLERİ (Ağır klasörler / ham eğitim verisi) ===
+data/
+hand_crops.zip
+keypoints.zip
+letter_geometric.zip
+letter_keypoints.zip
+letter_keypoints_v2.zip
+my_hand_crops.zip
+voice-dedection-4.zip
+models/drive-download-*.zip
+
+# === BÜYÜK MODEL DOSYALARI (GitHub Releases veya Drive üzerinden paylaş) ===
+# NOT: label_map.json, landmark_scaler.pkl ve landmark_cnn.keras dahil edilir.
+models/best_cnn.keras
+
+# === PYTHON SANAL ORTAMI ===
+tsl_env/
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# === API ANAHTARLARI & GİZLİ BİLGİLER ===
+.env
+.env.*
+*.env
+config.ini
+secrets.json
+*_api_key*
+*_secret*
+*credentials*
+service_account*.json
+
+# === PYTHON CACHE ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+# === LOG DOSYALARI ===
+*.log
+logs/
+
+# === macOS ===
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# === IDE ===
+.idea/
+.vscode/
+*.code-workspace
+
+# === JUPYTER NOTEBOOK ===
+.ipynb_checkpoints/
+*.ipynb
+
+# === GEÇİCİ DOSYALAR ===
+*.tmp
+*.bak

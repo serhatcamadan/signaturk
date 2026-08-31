@@ -1,0 +1,22 @@
+# SwiftKey-Style Real-Time Speech-to-Text Dependencies
+# =====================================================
+
+# Core STT Library (wraps faster_whisper with real-time capabilities)
+RealtimeSTT>=0.2.0
+
+# Faster Whisper - Optimized Whisper implementation with CTranslate2
+faster-whisper>=1.0.0
+
+# PyAudio for microphone input
+PyAudio>=0.2.14
+
+# WebRTC VAD for voice activity detection
+webrtcvad>=2.0.10
+
+# NumPy for audio processing
+numpy>=1.24.0
+
+# CUDA-specific (for RTX 3060 optimization)
+# Note: Install PyTorch with CUDA support separately:
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+

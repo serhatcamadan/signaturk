@@ -1,0 +1,85 @@
+<!-- buffer-bar'ın hemen üstüne ekle -->
+<div class="oneri-panel" id="oneriPanel" style="display:none">
+  <div class="oneri-title">LLM önerileri — birini seç</div>
+  <div id="oneriList"></div>
+</div>
+
+<!-- controls bölümündeki llm-status'u şununla değiştir -->
+<div class="llm-status" id="llm-status"></div>
+
+<!-- CSS — <style> bloğuna ekle -->
+<style>
+.oneri-panel {
+  padding: 8px 14px;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.oneri-title {
+  font-size: 10px;
+  color: var(--text2);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.oneri-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  margin-bottom: 5px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.oneri-btn:hover { background: #1E3A2F; border-color: var(--green); color: var(--green); }
+.oneri-btn.secilen { background: #1E3A2F; border-color: var(--green); color: var(--green); }
+.oneri-btn span.num {
+  font-size: 10px;
+  color: var(--text2);
+  margin-right: 6px;
+  font-family: 'DM Mono', monospace;
+}
+</style>
+
+<!-- JavaScript — socket.on bloklarına ekle -->
+<script>
+socket.on('llm_oneriler', (d) => {
+  const panel = document.getElementById('oneriPanel');
+  const list  = document.getElementById('oneriList');
+  list.innerHTML = '';
+  panel.style.display = 'block';
+
+  d.oneriler.forEach((cumle, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'oneri-btn' + (i === d.secim ? ' secilen' : '');
+    btn.innerHTML = `<span class="num">${i+1}.</span>${cumle}`;
+    btn.onclick = () => {
+      socket.emit('llm_sec', { secilen: cumle });
+      panel.style.display = 'none';
+      list.innerHTML = '';
+    };
+    list.appendChild(btn);
+  });
+});
+
+// 1, 2, 3 klavye kısayolları öneri seçmek için
+document.addEventListener('keydown', (e) => {
+  const panel = document.getElementById('oneriPanel');
+  if (panel.style.display === 'none') return;
+  const idx = parseInt(e.key) - 1;
+  if (idx >= 0 && idx <= 2) {
+    const btns = document.querySelectorAll('.oneri-btn');
+    if (btns[idx]) btns[idx].click();
+  }
+  if (e.key === 'Escape') {
+    panel.style.display = 'none';
+  }
+});
+</script>
